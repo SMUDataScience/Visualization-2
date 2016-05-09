@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>line plot 02</title>
+
+<style>
+
+body {
+	background-color: #555566;
+}
+
+</style>
+</head>
+
+<body>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var w = 800, h = 600;
+// Generate dummy data in object form [ {"x" : val, "y" : val} ], domain 0-1.
+// note: array of objects
+var ptCount = 20;
+var dataSet = [];
+for(var i=0; i<ptCount; i++) {
+  dataSet.push({"x" : Math.random(), "y" : Math.random()});
+}
+
+// define accessor functions to get coord data
+var plotFunction = d3.svg.line()
+	// manually multiply data to scale
+	.x(function(d) { return d.x*w; }) 
+	.y(function(d) { return d.y*h; })
+	.interpolate("linear"); // we can change this for alternative plots
+
+// set up svg
+var svgContainer = d3.select("body").append("svg")
+			.attr("width", w)
+			.attr("height", h);
+
+// plot some data
+var plot = svgContainer.append("path")
+			.attr("d", plotFunction(dataSet)) // access data
+			.attr("stroke", "orange")
+			.attr("stroke-width", 4)
+			.attr("fill", "none");
+
+
+</script>
+
+</body>
+</html>

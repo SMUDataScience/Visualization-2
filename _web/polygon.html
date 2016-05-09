@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<style>
+			body {
+			    background-color: #666666;
+				}
+
+				#canvas {
+			    position: absolute;
+			    background: #999999;
+			    top:0;
+			    bottom: 0;
+			    left: 0;
+			    right: 0;
+			    margin:auto;
+				}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="600" height="600" style="border: 2px solid #222222;">
+					HTML5 Canvas not supported
+		</canvas>
+
+		<script>
+
+			// utility function
+			function radians(deg) {
+				return deg*Math.PI/180.0;
+			}
+
+			var frameCount = 0;
+			var sideCount = 7;
+			var radius = 145;
+			function init(){
+				window.requestAnimationFrame(draw);
+			}
+
+			function draw() {
+				var ctx = document.getElementById('canvas').getContext('2d');
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.save();
+				ctx.fillStyle = 'rgba(100, 55, 185, 1)';
+				ctx.strokeStyle = 'rgba(200, 140, 0, 1)';
+				ctx.lineWidth = 9;
+				ctx.translate(canvas.width/2, canvas.height/2);
+				ctx.rotate(radians(++frameCount));
+				var theta = 0;
+				var rot = Math.PI*2/sideCount;
+				ctx.beginPath();
+				ctx.moveTo(Math.cos(theta)*radius, Math.sin(theta)*radius);
+				for(i=0; i<sideCount; i++) {
+					ctx.lineTo(Math.cos(theta)*radius, Math.sin(theta)*radius);
+					theta += rot;
+				}
+				ctx.closePath();
+				ctx.fill();
+				ctx.stroke();
+				ctx.restore();
+
+				window.requestAnimationFrame(draw);
+			}
+
+			init();
+		</script>
+	</body>
+</html>

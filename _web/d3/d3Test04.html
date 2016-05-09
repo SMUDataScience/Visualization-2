@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+    <div id="viz"></div>
+    <script type="text/javascript">
+
+    var mySVG = d3.select("#viz")
+        .append("svg")
+        .attr("width", 800)
+        .attr("height", 600);    
+
+    var squares = 10;
+    var gap = 2.0;
+    var w = (800.0-(squares-1)*gap)/squares;
+    var mySquares = [];
+
+    var paths = [];
+
+    for(var i=0; i<squares; i++){
+       // console.log(i*w);
+        mySquares[i] = mySVG.append("rect")
+        .style("stroke","gray")
+        .style("fill","white")
+        .attr("x",i*(w+gap))
+        .attr("y",60)
+        .attr("width",w)
+        .attr("height",60);
+         mySquares[i].transition().attr("y", 
+            Math.random()*520)
+            .style("fill",function() { return "hsl(" + Math.random() * 360 + "," + Math.random() * 100 +"," + Math.random() * 100+")";})
+            .duration(2000);
+    }
+
+   
+
+    </script>
+</body>
+</html>

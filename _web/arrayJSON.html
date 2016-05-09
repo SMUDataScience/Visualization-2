@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<div id = "placeholder"> </div>
+		<script>
+			var data = { "faculty":[
+							{	
+								"name" : "Ira Greenberg",
+								"age": 49,
+								"occupation" : "Professor",
+								"city" : "Dallas"
+							},
+
+							{	
+								"name" : "Roy Hinkley",
+								"age": 38,
+								"occupation" : "Professor Emeritus",
+								"city" : "Cleveland"
+							},
+
+							{	
+								"name" : "Monnie McGee",
+								"age": 24,
+								"occupation" : "Associate Professor",
+								"city" : "Dallas"
+							},
+
+							{	
+								"name" : "Daniel Engels",
+								"age": 35,
+								"occupation" : "Assistant Professor",
+								"city" : "Dallas"
+							}
+									]
+						}
+		</script>
+	</head>
+	<body>
+		<script>
+		for(var i=0; i<data.faculty.length; i++){
+			document.getElementById("placeholder").innerHTML += "Name: "+data.faculty[i].name+"<br/>Age: "+data.faculty[i].age+"<br/>Occupation: "+data.faculty[i].occupation+"<br/>City: "+data.faculty[i].city+"<br/><br/>";
+		}
+
+		/* using for in 
+		for(var i in data.faculty){
+			document.getElementById("placeholder").innerHTML += "Name: "+data.faculty[i].name+"<br/>Age: "+data.faculty[i].age+"<br/>Occupation:"+data.faculty[i].occupation+"<br/>City: "+data.faculty[i].city+"<br/><br/>";
+		}
+		*/
+		</script>
+	</body>
+</html>

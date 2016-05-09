@@ -1,0 +1,154 @@
+<html>
+	<head>
+		<style>
+			body {
+			    background-color: #666666;
+				}
+
+				#canvas {
+			    position: absolute;
+			    background: #999999;
+			    top:0;
+			    bottom: 0;
+			    left: 0;
+			    right: 0;
+			    margin:auto;
+				}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="600" height="600" style="border: 2px solid #222222;">
+					HTML5 Canvas not supported
+		</canvas>
+
+		<script>
+
+			// utility functions
+			function radians(deg) {
+				return deg*Math.PI/180.0;
+			}
+
+			// http://stackoverflow.com/questions/22237497/draw-a-circle-filled-with-random-color-sqares-on-canvas
+			function randCol() {
+    			var r = Math.floor(Math.random()*256);
+        		var g = Math.floor(Math.random()*256);
+        		var b =Math.floor(Math.random()*256);
+   				return 'rgb(' + r + ',' + g + ',' + b + ')';
+			}
+
+
+			// Vec2 class
+			function Vec2(x, y) {
+				this.x = x;
+				this.y = y;
+			};
+
+			Vec2.prototype.add = function(vec2){
+				this.x += vec2.x;
+				this.y += vec2.y;
+			};
+
+			Vec2.prototype.addSclr = function(sclr){
+				this.x += sclr;
+				this.y += sclr;
+			};
+
+			Vec2.prototype.sub = function(vec2){
+				this.x -= vec2.x;
+				this.y -= vec2.y;
+			};
+
+			Vec2.prototype.mult = function(vec2){
+				this.x *= vec2.x;
+				this.y *= vec2.y;
+			};
+
+			Vec2.prototype.div = function(vec2){
+				this.x /= vec2.x;
+				this.y /= vec2.y;
+			};
+
+
+			// begin Polygon class
+			function Polygon(pos, rotSpd, sideCount, radiusX, radiusY, fillCol, strokeCol, strokeWt){
+				this.pos = pos;
+				this.rotSpd = rotSpd;
+				this.sideCount = sideCount;
+				this.radiusX = radiusX;
+				this.radiusY = radiusY;
+				this.fillCol = fillCol;
+				this.strokeCol = strokeCol;
+				this.strokeWt = strokeWt;
+				this.rot = 0;
+				this.vecs = [];
+				this.init();
+			}
+
+			Polygon.prototype.init = function(){
+				var theta = 0;
+				var rot = Math.PI*2/this.sideCount;
+				for(i=0; i<this.sideCount; i++) {
+					this.vecs[i] = new Vec2(Math.cos(theta)*this.radiusX, Math.sin(theta)*this.radiusY);
+					theta += rot;
+				}
+			}
+
+			Polygon.prototype.display = function(ctx){
+				ctx.save();
+				ctx.fillStyle = this.fillCol;
+				ctx.strokeStyle = this.strokeCol;
+				ctx.lineWidth = this.strokeWt;
+				ctx.translate(this.pos.x, this.pos.y);
+				ctx.rotate(this.rot);
+				ctx.beginPath();
+				ctx.moveTo(this.vecs[0].x, this.vecs[0].y);
+				for(i=0; i<this.sideCount; i++) {
+					ctx.lineTo(this.vecs[i].x, this.vecs[i].y);
+				}
+				this.rot += this.rotSpd;
+				ctx.closePath()
+				ctx.fill();
+				ctx.stroke();
+				ctx.restore();
+			}
+
+			var frameCount = 0;
+			// you can change rows and cols
+			var rows = 14;
+			var cols = 14;
+			var polys = [];
+
+			function init(){
+				var cellW = canvas.width/(cols);
+				var cellH = canvas.height/(rows);
+				// create 2d array (array of arrays)
+				for(var i=0; i<rows; i++) {
+					var poly1D = [];
+					for(var j=0; j<cols; j++) {
+						poly1D.push(new Polygon(new Vec2(cellW*j, cellH*i), radians(Math.random()*-5 + Math.random()*5), Math.round(3+Math.random()*9), cellW/2, cellH/2, randCol(), randCol(), .1+Math.random()*6));
+					}
+					polys.push(poly1D);
+				}
+				window.requestAnimationFrame(draw);
+			}
+
+			function draw() {
+				var ctx = document.getElementById('canvas').getContext('2d');
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				// shift everything over a bit
+				ctx.save();
+				ctx.translate(polys[0][0].radiusX, polys[0][0].radiusY);
+				for(var i=0; i<rows; i++) {
+					for(var j=0; j<cols; j++) {
+						polys[i][j].display(ctx);
+					}
+				}
+				ctx.restore();
+				window.requestAnimationFrame(draw);
+			}
+
+			init();
+		</script>
+	</body>
+</html>

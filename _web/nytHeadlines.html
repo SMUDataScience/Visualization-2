@@ -1,0 +1,33 @@
+<html>
+ <head>
+   <title>Times Newswire API Example</title>   
+ </head>
+ <body>
+   <h1>Times Newswire API Example</h1>
+  <div id = "news"> </div>
+
+<script>
+      //https://remysharp.com/2011/04/21/getting-cors-working
+      // using CORS to avoid JSONP and server-side
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=obama&api-key=42160bd7d6b16a559c2f4704fab37231%3A8%3A72612222');
+      xhr.onreadystatechange = function () {
+        if (this.status == 200 && this.readyState == 4) {
+          var articles = JSON.parse(this.responseText);
+          console.log('response: ' + this.responseText);
+          processMe(articles);
+          
+        }
+      };
+      xhr.send();
+
+      function processMe(data){
+        for(var i=0; i<data.response.docs.length; i++){
+           document.getElementById("news").innerHTML += data.response.docs[i].snippet;
+           document.getElementById("news").innerHTML +="<br /><br />"
+        }
+      }
+</script>
+
+ </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<head>
+
+	<style>
+
+.thingy div {
+  font: 10px sans-serif;
+  background-color: orange;
+  text-align: right;
+  padding: 13px;
+  margin: 2px;
+  color: blue;
+}
+</style>
+
+</head>
+
+
+<body>
+<div class="thingy">
+</div>
+
+
+
+<!-- grab D3 lib -->
+<script src="//d3js.org/d3.v3.min.js"> </script>
+
+<script>
+
+
+
+    var data = [4, 8, 15, 23, 42, 65, 75, 45, 32, 12, 7, 45, 34, 22, 123];
+
+
+var x = d3.scale.linear()
+    .domain([0, d3.max(data)])
+    .range([0, 420]);
+
+d3.select(".thingy")
+  .selectAll("div")
+    .data(data)
+  .enter().append("div")
+    .style("width", function(d) { return x(d) + "px"; })
+    .text(function(d) { return d; });
+
+//document.getElementsByTagName('body').appendChild(iDiv);
+
+// <div class="chart">
+//   <div style="width: 40px;">4</div>
+//   <div style="width: 80px;">8</div>
+//   <div style="width: 150px;">15</div>
+//   <div style="width: 160px;">16</div>
+//   <div style="width: 230px;">23</div>
+//   <div style="width: 420px;">42</div>
+// </div>
+
+</script>
+
+
+
+
+</body>
+
+</html>

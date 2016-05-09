@@ -1,0 +1,86 @@
+<html>
+<head>
+
+<style>
+.myPath {
+  stroke-dasharray: 20;
+}
+</style>
+
+<svg width="800" height="800">
+          <rect  id="rect1" x="10" y="10" width="100" height="75"
+      style="stroke: #000000; fill: #eeeeee;"
+      onmouseover="this.style.stroke = '#ff0000'; this.style['stroke-width'] = 5;"
+       onmouseout="this.style.stroke = '#000000'; this.style['stroke-width'] = 1;"
+        /> 
+
+        <polyline id="path" class="myPath" points="" stroke="#c00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+<!--         <animateMotion id="motion" path="M 250,80 H 50 Q 30,80 30,50 Q 30,20 50,20 H 250 Q 280,20,280,50 Q 280,80,250,80Z"
+          dur="10s" repeatCount="indefinite" rotate="auto"> -->
+
+           <animateTransform attributeName="transform"
+                  attributeName="transform"
+                    type="translate"
+                    from="400 400" to="400 400"
+                    begin="0s" dur="10s"
+                    repeatCount="indefinite"
+                    additive="sum"
+          />
+
+          <animateTransform attributeName="transform"
+                    type="rotate"
+                    from="0 0 0" to="360 0 0"
+                    begin="0s" dur="10s"
+                    repeatCount="indefinite"
+                    additive="sum"
+          />
+
+         </polyline>
+</svg>
+<input id="button1" type="button" value="Change Dimensions"
+            onclick="changeDimensions()"/>
+
+<script>
+    function changeDimensions() {
+        document.getElementById("rect1").setAttribute("width", "100");
+        document.getElementById("rect1").setAttribute("x", "300");
+        //var motionPath += String(","+x+","+x2);
+       // document.getElementById("motion").setAttribute("x", "300");
+
+        var points = document.getElementById("path").getAttribute("points");
+        var x = 10;
+        var x2 = 20;
+        var theta = 0;
+        var radius = 200;
+        var newPt = "";
+        var ptCount = 7;
+        for(var i=0; i< ptCount; i++){
+          if(i==0) {
+            newPt += String(Math.cos(theta)*radius+","+Math.sin(theta)*radius);
+          } else {
+              newPt += String(","+Math.cos(theta)*radius+","+Math.sin(theta)*radius);
+          }
+        
+          theta += Math.PI*2/ptCount;
+        }
+      //  var newPt = String(","+x+","+x2);
+        points += newPt;
+        document.getElementById("path").setAttribute("points", points);
+    }
+</script>
+</head>
+
+<body>
+	<script>
+	// var svgElement = document.getElementById("rect1");
+	// svgElement.setAttribute("width", "400");
+	// svgElement.style.stroke = "#ff0000";
+
+  var svgElement2 = document.getElementById("path");
+  // svgElement2.setAttribute("width", "400");
+  // svgElement2.style.stroke = "#ff0000";
+	//alert(svgElement.getAttribute("width"));
+	</script>
+
+</body>
+</html>

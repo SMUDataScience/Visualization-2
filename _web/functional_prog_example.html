@@ -1,0 +1,50 @@
+<html>
+<head>
+<script>
+
+
+// pass function name with operands to op
+function op(a, b, func) {
+	return func(a, b);
+}
+
+function add(a, b){
+	return a+b;
+}
+function sub(a, b){
+	return a-b;
+}
+function mult(a, b){
+	return a*b;
+}
+function div(a, b){
+	return a/b;
+}
+
+
+// anonymous functions are not hoisted, so must be declared before being invoked
+var x = function (a, b) {return a * b};
+
+</script>
+</head>
+
+<body>
+<script>
+
+var s = op(5, 6, div);
+alert(s);
+alert(x(4, 5));
+
+// self inoking function because of traling parentheses
+//anonymous
+(function () {
+    alert("Hello!!");      // I will invoke myself
+})();
+
+(function sayGoodbye () {
+    alert("Goodbye!!");      // I will invoke myself
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+ <head>
+   <title>Times Newswire API Example</title>   
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ </head>
+ <body>
+   <h1>Times Newswire API Example</h1>
+  <div id = "news"> </div>
+
+<script>
+function getWeather(callback) {
+    var weather = 'http://openweathermap.org/data/2.1/find/city?lat=13.3428&lon=-6.26612&cnt=10';
+    $.ajax({
+      dataType: "jsonp",
+      url: weather,
+      success: callback
+    });
+}
+
+// get data:
+getWeather(function (data) {
+    console.log('weather data received');
+    console.log(data.message);
+     console.log(data.cod);
+    console.log(data.list[1].weather[0].description);
+    for(var i=0; i<data.list.length; i++){
+      console.log(data.list[i].weather[0].description);
+    }
+});
+</script>
+
+ </body>
+</html>

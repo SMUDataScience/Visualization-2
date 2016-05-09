@@ -1,0 +1,30 @@
+{ "faculty":[
+	{	
+		"name" : "Ira Greenberg",
+		"age": 49,
+		"occupation" : "Professor",
+		"city" : "Dallas"
+	},
+
+	{	
+		"name" : "Roy Hinkley",
+		"age": 38,
+		"occupation" : "Professor Emeritus",
+		"city" : "Cleveland"
+	},
+
+	{	
+		"name" : "Monnie McGee",
+		"age": 24,
+		"occupation" : "Associate Professor",
+		"city" : "Dallas"
+	},
+
+	{	
+		"name" : "Daniel Engels",
+		"age": 35,
+		"occupation" : "Assistant Professor",
+		"city" : "Dallas"
+	}
+			]
+}

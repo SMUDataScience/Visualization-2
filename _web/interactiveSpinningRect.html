@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<style>
+			body {
+			    background-color: #666666;
+				}
+
+				#canvas {
+			    position: absolute;
+			    background: #999999;
+			    top:0;
+			    bottom: 0;
+			    left: 0;
+			    right: 0;
+			    margin:auto;
+				}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="600" height="600" style="border: 2px solid #222222;">
+					HTML5 Canvas not supported
+		</canvas>
+
+		<script>
+			var frameCount = 0;
+			var isSpinning = false;
+			function init(){
+				window.requestAnimationFrame(draw);
+			}
+
+			function draw() {
+				if(isSpinning){
+					++frameCount;
+				}
+				var ctx = document.getElementById('canvas').getContext('2d');
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				
+				ctx.save();
+				
+				ctx.fillStyle = 'rgba(200, 185, 0, 1)';
+				var w = 150, h = 200;
+				ctx.translate(canvas.width/2, canvas.height/2);
+				if(isSpinning){
+					ctx.rotate(frameCount*Math.PI/180.0);
+				}
+				ctx.fillRect(-w/2, -h/2, w, h);
+
+				ctx.font = "20px Arial";
+				ctx.fillStyle = 'rgba(75, 75, 100, 1)';
+				ctx.textAlign = "center";
+				var text1 = "Click me";
+				var text2 = "to Spin.";
+				var textWidth = ctx.measureText(text1).width;
+				ctx.fillText(text1, 0, 0);
+				ctx.fillText(text2, 0, 20);
+
+				ctx.restore();
+
+				window.requestAnimationFrame(draw);
+			}
+
+			canvas.onmousedown = function (e) {
+    			isSpinning = true;
+			};
+
+			init();
+		</script>
+	</body>
+</html>

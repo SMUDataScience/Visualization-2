@@ -1,0 +1,6 @@
+C:\Users\Ira\Dev\web\ts\tsDemo02\tsDemo02\bin\tsDemo02.dll.config
+C:\Users\Ira\Dev\web\ts\tsDemo02\tsDemo02\bin\tsDemo02.dll
+C:\Users\Ira\Dev\web\ts\tsDemo02\tsDemo02\bin\tsDemo02.pdb
+C:\Users\Ira\Dev\web\ts\tsDemo02\tsDemo02\obj\Debug\tsDemo02.csprojResolveAssemblyReference.cache
+C:\Users\Ira\Dev\web\ts\tsDemo02\tsDemo02\obj\Debug\tsDemo02.dll
+C:\Users\Ira\Dev\web\ts\tsDemo02\tsDemo02\obj\Debug\tsDemo02.pdb

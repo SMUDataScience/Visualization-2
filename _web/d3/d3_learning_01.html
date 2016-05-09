@@ -1,0 +1,51 @@
+<html>
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<style>
+</style>
+</head>
+<body>
+	<script src="//d3js.org/d3.v3.min.js"> </script>
+
+	<div id='div1'> A </div>
+	<div id='div2'> B </div>
+	<div id='div3'> C </div>
+	<div id='div4'> D </div>
+	<br>
+
+	<p id='p1'> E </p>
+	<p id='p2'> F </p>
+	<p id='p3'> G </p>
+	<p id='p4'> H </p>
+
+	<br>
+	<span id='s1'> I </p>
+	<span id='s2'> J </p>
+	<span id='s3'> K </p>
+	<span id='s4'> L </p>
+
+	<script>
+		var arr = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+		for(var i=0; i<6; i++){
+			d3.select('body')
+			.append(arr[i])
+			.text('Ira');
+		}
+
+		d3.select('div').style('background-color', 'lightblue');
+
+			d3.selectAll('#p2').style('background-color', 'orange');
+
+			var selector = d3.select('body')
+			.selectAll('div')
+			.data([10, 20, 30, 40]);
+
+			var entering = selector.enter();
+
+			entering.append('div')
+			.text(function(d) { return d;  });
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Dynamic HTML Art 04</title>
+
+<style>
+table {
+    width: 100%;
+    background-color: #445588;
+    /*eliminate border*/
+    border-collapse: collapse;
+}
+
+td {
+    /*eliminate border*/
+    padding: 0;
+}
+
+
+</style>
+
+<script>
+
+// color class
+var RGB = function (r, g, b) {
+    this.r = r;
+    this.g = g;
+    this.b = b;
+};
+
+RGB.prototype.getHex = function(){
+    var r = this.r.toString(16);
+    if(r.length == 0) {
+        r =  "00";
+    } else if(r.length == 1) {
+        r = "0" + r;
+    } 
+
+    var g = this.g.toString(16);
+    if(g.length == 0) {
+        g =  "00";
+    } else if(g.length == 1) {
+        g = "0" + g;
+    } 
+
+    var b = this.b.toString(16);
+    if(b.length == 0) {
+        b =  "00";
+    } else if(b.length == 1) {
+        b = "0" + b;
+    } 
+
+    return r+g+b;
+};
+
+
+
+function createHTMLGradient(rows, cols, startColor, endColor){
+    var r1 = startColor.r;
+    var g1 = startColor.g;
+    var b1 = startColor.b;
+
+    var r2 = endColor.r;
+    var g2 = endColor.g;
+    var b2 = endColor.b;
+
+     var deltaR = (r2-r1)/(rows*cols);
+     var deltaG = (g2-g1)/(rows*cols);
+     var deltaB = (b2-b1)/(rows*cols);
+
+    var table = document.createElement('table');
+
+    for(var i=0, k=0; i<rows; i++){
+        var tr = document.createElement('tr');   
+        for(var j=0; j<cols; j++){
+            k++;
+
+            var td = document.createElement('td');
+
+             var r = Math.round(r1+deltaR*k);
+             var g = Math.round(g1+deltaG*k);
+             var b = Math.round(b1+deltaB*k);
+             td.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+
+            var text = document.createTextNode('\u00a0');
+            td.appendChild(text);
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+
+    table.style.border = '2px solid blue';
+    document.body.appendChild(table);
+}
+
+</script>
+</head>
+
+
+<body>
+<script>
+    var c1 = new RGB(0, 0, 255);
+    var c2 = new RGB(255, 0, 0);
+    createHTMLGradient(60, 30, c1, c2);
+</script>
+</body>
+
+</html>

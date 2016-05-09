@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <style> 
+    .dud {
+        background-color: red;
+      }
+
+
+      </style>
+  </head>
+  <body>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+
+    <script>
+    d3.csv("data.csv",type,  function(arr) {
+      arr.forEach(function(d){
+        console.log("x: " + d.x + ", " + "y: " + d.y);
+        console.log(d.x + d.y);
+      });
+    });
+
+var scale = d3.scale.linear()
+              .domain([0, 1])
+              .range([0, 100]);
+
+console.log(scale(1));
+console.log(scale.domain());
+    // d3.csv("data.csv", function(arr) {
+    //   arr.forEach(function(d){
+    //     console.log("x: " + d.x + ", " + "y: " + d.y);
+    //     console.log((+d.x) + (+d.y));
+    //   });
+    // });
+
+    function type(d){
+      d.x = +d.x;
+      d.y = +d.y;
+      return d;
+    }
+
+    </script>
+
+    <svg class="dud" width="400" height="400">
+      <rect width="400" height="400" fill="#6655dd" stroke="#ffff00" stroke-width="10"> </rect>
+       <rect width="400" height="400" fill="#6655dd" stroke="#ffff00" stroke-width="10"> </rect>
+      // fill none 
+    </svg>
+  </body>
+</html>

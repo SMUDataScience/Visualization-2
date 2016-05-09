@@ -1,0 +1,44 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+
+<! Example from http://www.htmlgoodies.com/beyond/javascript/article.php/3767776/How-to-Develop-Web-Applications-with-Ajax-Part-1.htm
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Developing Web Applications with Ajax - Example</title>
+
+    <script type="text/javascript"><!--
+function ajaxRead(file){
+  var xmlObj = null;
+  if(window.XMLHttpRequest){
+      xmlObj = new XMLHttpRequest();
+  } else if(window.ActiveXObject){
+      xmlObj = new ActiveXObject("Microsoft.XMLHTTP");
+  } else {
+      return;
+  }
+  xmlObj.onreadystatechange = function(){
+    if(xmlObj.readyState == 4){
+       updateObj('xmlObj', xmlObj.responseXML.getElementsByTagName('data')[0].firstChild.data);
+     }
+    }
+    xmlObj.open ('GET', file, true);
+    xmlObj.send ('');
+  }
+  function updateObj(obj, data){
+   document.getElementById(obj).firstChild.data = data;
+  }
+  //--></script>
+  
+  </head>
+  <body>
+    <h1>Developing Web Applications with Ajax</h1>
+    <p>This page demonstrates the use of Asynchronous Javascript and XML (Ajax) technology to
+    update a web page's content by reading from a remote file dynamically -- no page reloading
+    is required. Note that this operation does not work for users without JavaScript enabled.</p>
+    <p id="xmlObj">
+    This is some sample data. It is the default data for this web page. <a href="data.xml"
+    title="View the XML data." onclick="ajaxRead('testData.xml'); this.style.display='none'; return false">View XML     data.</a>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<!-- Thanks: http://alignedleft.com/tutorials/d3/drawing-svgs -->
+
+<head>
+
+<meta charset="utf-8">
+<title>D3 Testing</title>
+<style>
+
+body {
+	background-color: #ddddee;
+}
+
+div.bar {
+  display: inline-block;
+  width: 20px;
+  margin-right: 1px;
+  background-color: gray;
+}
+
+</style>
+
+</head>
+
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var dataset = [];
+for(var i=0; i<20; i++) {
+  // 10-60 bar hts
+  dataset.push(10+Math.random()*50);
+}
+
+
+// create an empty circle element for each data point automatically
+var bars = d3.select("body")
+    .selectAll("div")
+    .data(dataset)
+    .enter()
+    .append("div")
+    .attr("class", "bar")
+    .style("height", function(d) {
+        var barHeight = d*2;
+        return barHeight + "px";
+    });
+
+</script>
+
+</body>
+</html>

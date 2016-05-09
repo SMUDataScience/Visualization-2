@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dynamic HTML Art 01</title>
+
+<style>
+table {
+	width: 100%;
+	background-color: #445588;
+	/*eliminate border*/
+	border-collapse: collapse;
+}
+
+td {
+	/*eliminate border*/
+	padding: 0;
+}
+
+
+</style>
+
+<script>
+
+var myString = "<table> \n"+
+					"<tr> \n"+
+					"<td style=\"background-color:red;\"> &nbsp; </td> \n"+
+					"<td style=\"background-color:white;\"> &nbsp; </td> \n"+
+					"<td style=\"background-color:blue;\"> &nbsp; </td> \n"+
+					"</tr> \n"+
+					"<tr> \n"+
+					"<td style=\"background-color:green;\"> &nbsp; </td> \n"+
+					"<td style=\"background-color:purple;\"> &nbsp; </td> \n"+
+					"<td style=\"background-color:orange;\"> &nbsp; </td> \n"+
+					"</tr> \n"+
+					"<tr> \n"+
+					"<td style=\"background-color:pink;\"> &nbsp; </td> \n"+
+					"<td style=\"background-color:black;\"> &nbsp; </td> \n"+
+					"<td style=\"background-color:brown;\"> &nbsp; </td> \n"+
+					"</tr> \n"+
+				"</table> \n"
+
+function createTable(){
+	document.write(myString);
+}
+
+</script>
+</head>
+
+<body>
+	<script>
+		createTable();
+ 	</script>
+</body>
+
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<!-- Thanks: http://alignedleft.com/tutorials/d3/drawing-svgs -->
+
+<head>
+
+<meta charset="utf-8">
+<title>Scatter Plot 02</title>
+<style>
+
+body {
+	background-color: #442211;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: white;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+    fill: #ffffff;
+}
+
+</style>
+
+</head>
+
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var margin = 30;
+var padding = 10;
+var width = 1000;
+var height = 600;
+var ptCount = 100;
+var dataset = [];
+for(var i=0; i<ptCount; i++) {
+  dataset.push([Math.random()*3000, Math.random()*1000]);
+}
+
+
+var scaleX = d3.scale.linear()
+                    .domain([d3.min(dataset, function(d){return d[0];}), d3.max(dataset, function(d){return d[0];})])
+                    .range([margin+padding, width-(padding+margin)])
+                    .clamp(true);
+
+var scaleY = d3.scale.linear()
+                    .domain([d3.min(dataset, function(d){return d[1];}), d3.max(dataset, function(d){return d[1];})])
+                    .range([margin+padding, height-(padding+margin)])
+
+var scaleR = d3.scale.linear()
+                     .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+                     .range([2, 4]);
+
+
+var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+
+            svg.selectAll("circle")
+            .data(dataset)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) {
+              return scaleX(d[0]);
+            })  
+            .attr("cy", function(d) {
+              return scaleY(d[1]);
+            })
+            .attr("r", function(d, i) {
+              return scaleR(d[1]);
+            })
+            .attr("fill", "#ffffff")
+              .transition()
+              .attr("fill", "#ff4422")
+              .duration(4000)
+              .delay(100);
+
+
+
+            // svg.selectAll("text")
+            //    .data(dataset)
+            //    .enter()
+            //    .append("text")
+            //    .text(function(d) {
+            //         return parseInt(d[0]) + "," + parseInt(d[1]);
+            //    })
+            //    .attr("x", function(d) {
+            //          return parseInt(scaleX(d[0]));
+            //    })
+            //    .attr("y", function(d) {
+            //         return parseInt(scaleY(d[1]));
+            //    })
+            //   .attr("font-family", "sans-serif")
+            //   .attr("font-size", "9px")
+            //   .attr("fill", "#888899");
+
+
+              svg.append("g")
+                  .attr("class", "axis")
+                  .attr("transform", "translate(0," + (height-margin)+ ")")
+                  .call( d3.svg.axis()
+                      .scale(scaleX)
+                      .orient("bottom")
+                      .ticks(20) );
+
+               svg.append("g")
+                  .attr("class", "axis")
+                  .attr("transform", "translate("+margin+"," + 0 + ")")
+                  .call( d3.svg.axis()
+                      .scale(scaleY)
+                      .orient("left")
+                      .ticks(10) );
+
+</script>
+
+</body>
+</html>

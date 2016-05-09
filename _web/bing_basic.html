@@ -1,0 +1,15 @@
+<html> 
+	<head> 
+		<title>Bing Search Tester (Basic)</title> 
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	</head> 
+	<body> 
+		<h1>Bing Search Tester (Basic)</h1> 
+		<form method="POST" action="bing_basic.php"> 
+			<label for="service_op">Service Operation</label><br/> 
+			<input name="service_op" type="radio" value="Web" CHECKED /> Web <input name="service_op" type="radio" value="Image" /> Image <br/> <label for="query">Query</label><br/> <input name="query" type="text" size="60" maxlength="60" value="" /><br /><br /> <input name="bt_search" type="submit" value="Search" /> 
+		</form> 
+		<h2>Results</h1> 
+		{RESULTS} 
+	</body> 
+</html>

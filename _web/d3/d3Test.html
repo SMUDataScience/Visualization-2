@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- From: http://bl.ocks.org/mbostock/1005090 -->
+
+<head>
+
+  <meta charset="utf-8">
+<title>D3 Testing</title>
+<style>
+
+body {
+background-color: #ff5566;
+}
+
+</style>
+
+</head>
+
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+
+
+<p> Test01 </p>
+<p> Test02 </p>
+<p> Test03 </p>
+<p> Test04 </p>
+<p> Test05 </p>
+<p> Test06 </p>
+
+<script>
+d3.select("body").transition()
+    .duration(5000) // this is 1s
+    .delay(100)     // this is 0.1s
+    .style("background-color", "black");
+
+d3.selectAll("p").style("color", function() {
+  return "hsl(" + Math.random() * 360 + ",100%,50%)";
+});
+
+d3.selectAll("p")
+    .data([Math.random()*40, Math.random()*40, Math.random()*40, Math.random()*40, Math.random()*40, Math.random()*40])
+    .style("font-size", function(d) { return d + "px"; });
+</script>
+
+</body>
+</html>

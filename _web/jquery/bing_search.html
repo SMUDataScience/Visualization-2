@@ -1,0 +1,49 @@
+<html>
+
+<head>
+
+<title>Bing Search Tester (Ajax)</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link href="bing.css" rel="stylesheet" type="text/css" />
+
+<!-- Load jQuery locally. Several sites also let you load this externally if you prefer -->
+
+<script language="JavaScript" type="text/javascript" src="jquery-1.7.2.js"></script>
+
+<script language="JavaScript" type="text/javascript" src="bing.js"></script>
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<h1>Bing Search Tester (Ajax)</h1>
+
+<form id="my_form">
+
+<label for="service_op">Service Operation</label>
+
+<input name="service_op" type="radio" value="Web" CHECKED /> Web
+
+<input name="service_op" type="radio" value="Image" /> Image
+
+<label for="query">Query</label>
+
+<input id="query" name="query" type="text" size="60" /><br /><br />
+
+<input id="bt_search" name="bt_search" type="button" value="Search" />
+
+</form>
+
+<!-- Results will be placed into the following container. -->
+
+<div id="results"></div>
+
+</div>
+
+</body>
+
+</html>

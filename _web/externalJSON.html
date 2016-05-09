@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<div id = "placeholder"> </div>
+	</head>
+
+	<body>
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script>
+		$.getJSON('profs.json', function(data) {
+			for(var i in data.faculty){
+			document.getElementById("placeholder").innerHTML += "Name: "+data.faculty[i].name+"<br/>Age: "+data.faculty[i].age+"<br/>Occupation: "+data.faculty[i].occupation+"<br/>City: "+data.faculty[i].city+"<br/><br/>";
+			}
+		});
+		</script>
+	</body>
+
+</html>

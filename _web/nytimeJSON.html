@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<div id = "placeholder"> </div>
+		 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	</head>
+
+	<body>
+
+		<script>
+		function showTimesData(data) {
+			alert("What's up");
+			for(var i in data.results){
+			document.getElementById("placeholder").innerHTML += "url: "+data.results[i].url+"<br/><br/><br/>";
+			}
+		}
+		</script>
+
+
+		<script src="http://api.nytimes.com/svc/mostpopular/v2/mostshared/all-sections/1?api-key=8ed242ade26de70a6d743190c89ca2af:10:72612222&callback=showTimesData">
+		</script>
+		//var nyTimes_data = "http://api.nytimes.com/svc/mostpopular/v2/mostshared/all-sections/1?api-key=8ed242ade26de70a6d743190c89ca2af:10:72612222">
+
+	</body>
+
+</html>

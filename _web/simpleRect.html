@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<style>
+			body {
+			    background-color: #666666;
+				}
+
+				#canvas {
+			    position: absolute;
+			    background: #999999;
+			    top:0;
+			    bottom: 0;
+			    left: 0;
+			    right: 0;
+			    margin:auto;
+				}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="600" height="600" style="border: 2px solid #cccccc;">
+					HTML5 Canvas not supported
+		</canvas>
+
+		<script>
+			function init(){
+				var ctx = document.getElementById('canvas').getContext('2d');
+				// same thing above in two lines
+				//var c=document.getElementById("myCanvas");
+				//var ctx=c.getContext("2d");
+				ctx.save(); // push state of canvas stack
+				ctx.fillStyle = 'rgba(200, 185, 0, 1)';
+				var w = 150, h = 200;
+				ctx.translate(canvas.width/2, canvas.height/2);
+				ctx.fillRect(-w/2, -h/2, w, h);
+				ctx.restore(); // pop state of canvas off stack
+			}
+			
+			init();
+		</script>
+	</body>
+</html>

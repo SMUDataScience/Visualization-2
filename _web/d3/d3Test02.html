@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- From: http://bl.ocks.org/mbostock/1005090 -->
+
+<head>
+
+  <meta charset="utf-8">
+<title>D3 Testing</title>
+<style>
+
+body {
+background-color: #ff5566;
+}
+
+</style>
+
+</head>
+
+<body>
+
+	<svg width="50" height="50">
+    <circle cx="25" cy="25" r="22"
+     fill="blue" stroke="gray" stroke-width="2"/>
+</svg>
+
+<script>
+
+var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+
+
+                11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+
+var dataset2 = [
+                  [ 5,     20 ],
+                  [ 480,   90 ],
+                  [ 250,   50 ],
+                  [ 100,   33 ],
+                  [ 330,   95 ],
+                  [ 410,   12 ],
+                  [ 475,   44 ],
+                  [ 25,    67 ],
+                  [ 85,    21 ],
+                  [ 220,   88 ]
+              ];
+
+
+d3.select("body").selectAll("div")
+    .data(dataset)
+    .enter()
+    .append("div")
+    .attr("class", "bar")
+    .style("height", function(d) {
+        var barHeight = d * 5;
+        return barHeight + "px";
+    });
+
+
+var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+ svg.selectAll("circle")
+   .data(dataset2)
+   .enter()
+   .append("circle")
+      .attr("cx", function(d) {
+        return d[0];
+   })
+   .attr("cy", function(d) {
+        return d[1];
+   })
+   .attr("r", 5);
+
+
+
+var xAxis = d3.svg.axis()
+                  .scale(xScale)
+                  .orient("bottom");
+svg.append("g")
+    .call(xAxis);
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<html>
+	<head>
+		<style>
+			body {
+			    background-color: #666666;
+				}
+
+				#canvas {
+			    position: absolute;
+			    background: #999999;
+			    top:0;
+			    bottom: 0;
+			    left: 0;
+			    right: 0;
+			    margin:auto;
+				}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="600" height="600" style="border: 2px solid #222222;">
+					HTML5 Canvas not supported
+		</canvas>
+
+		<script>
+
+			// utility function
+			function radians(deg) {
+				return deg*Math.PI/180.0;
+			}
+			// Vec2 class
+			function Vec2(x, y) {
+				this.x = x;
+				this.y = y;
+			};
+
+			Vec2.prototype.add = function(vec2){
+				this.x += vec2.x;
+				this.y += vec2.y;
+			};
+
+			Vec2.prototype.addSclr = function(sclr){
+				this.x += sclr;
+				this.y += sclr;
+			};
+
+			Vec2.prototype.sub = function(vec2){
+				this.x -= vec2.x;
+				this.y -= vec2.y;
+			};
+
+			Vec2.prototype.mult = function(vec2){
+				this.x *= vec2.x;
+				this.y *= vec2.y;
+			};
+
+			Vec2.prototype.div = function(vec2){
+				this.x /= vec2.x;
+				this.y /= vec2.y;
+			};
+
+
+			// begin Polygon class
+			function Polygon(sideCount, radius, fillCol, strokeCol, strokeWt){
+				this.sideCount = sideCount;
+				this.radius = radius;
+				this.fillCol = fillCol;
+				this.strokeCol = strokeCol;
+				this.strokeWt = strokeWt;
+				this.vecs = [];
+				this.init();
+			}
+
+			Polygon.prototype.init = function(){
+				var theta = 0;
+				var rot = Math.PI*2/this.sideCount;
+				for(i=0; i<this.sideCount; i++) {
+					this.vecs[i] = new Vec2(Math.cos(theta)*this.radius, Math.sin(theta)*this.radius);
+					theta += rot;
+				}
+			}
+
+			Polygon.prototype.display = function(ctx){
+				ctx.fillStyle = this.fillCol;
+				ctx.strokeStyle = this.strokeCol;
+				ctx.lineWidth = this.strokeWt;
+				ctx.beginPath();
+				ctx.moveTo(this.vecs[0].x, this.vecs[0].y);
+				for(i=0; i<this.sideCount; i++) {
+					ctx.lineTo(this.vecs[i].x, this.vecs[i].y);
+				}
+				ctx.closePath()
+				ctx.fill();
+				ctx.stroke();
+			}
+
+			var frameCount = 0;
+			var poly;
+
+			function init(){
+				poly = new Polygon(12, 175, '#8833ff', '#ff9900', 9);
+				window.requestAnimationFrame(draw);
+			}
+
+			function draw() {
+				var ctx = document.getElementById('canvas').getContext('2d');
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.save();
+				ctx.translate(canvas.width/2, canvas.height/2);
+				ctx.rotate(radians(++frameCount));
+				poly.display(ctx);
+				ctx.restore();
+				window.requestAnimationFrame(draw);
+			}
+
+			init();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <script src="app.js"></script>
+    <script src="MathUtil.js"></script>
+    <script src="Vec2.js"></script>
+
+    <script>
+        function draw() {
+            var canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                var ctx = canvas.getContext("2d");
+
+                //ctx.fillStyle = "rgb(200,0,0)";
+                //ctx.fillRect(10, 10, 55, 50);
+
+                //ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+                //ctx.fillRect(30, 30, 55, 50);
+
+                var v0 = new Vec2(200, 200);
+                var rAxis = new Vec2(rand(-200), rand(-200, 200));
+
+
+                //ctx.save();
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                // incident vector
+                ctx.strokeStyle = "#ff0000";
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(v0.x, v0.y);
+                ctx.stroke();
+
+                // reflecting axis
+                ctx.strokeStyle = "#999999";
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(rAxis.x, rAxis.y);
+                ctx.stroke();
+
+                // reflection vector
+                var v1 = Vec2.reflect(v0,rAxis);
+                ctx.strokeStyle = "#0000ff";
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(v1.x, v1.y);
+                ctx.stroke();
+
+                // ctx.restore();
+
+                var test0 = new Vec2(4, 5);
+                var test1 = new Vec2(6, 7);
+                test1.add()
+                //alert(Vec2.add(test0, test1));
+                //alert(test0);
+            }
+        }
+    </script>
+
+        <style>
+            body {
+                background-color: #444444;
+            }
+
+           #canvas {
+                border: 1.4px solid #ffffff;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+        </style>
+</head>
+
+<body onload="draw();">
+    <canvas id="canvas" width="1920" height="1080"></canvas>
+    <h1>TypeScript HTML App</h1>
+
+    <div id="content"></div>
+</body>
+</html>

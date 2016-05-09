@@ -1,0 +1,43 @@
+<html>
+ <head>
+   <title>Times Newswire API Example</title>   
+ </head>
+ <body>
+   <h1>Times Newswire API Example</h1>
+   <div id="news">-</div>
+   <script src="https://code.jquery.com/jquery.js"></script>
+   <script>
+
+  var API = "=8ed242ade26de70a6d743190c89ca2af:10:72612222";
+  var term = "Obama";
+   $.get("http://api.nytimes.com/svc/search/v2/articlesearch.json", {
+    "api-key":API,
+    sort:"oldest",
+    fq:"headline:(\""+term+"\")",
+    fl:"headline,snippet,multimedia,pub_date"}, function(res) {
+    console.dir(res.response);
+  }, "JSON");
+
+    // $(function() {
+    //     $.ajax({
+    //       //<script src="http://api.nytimes.com/svc/mostpopular/v2/mostshared/all-sections/1?api-key=8ed242ade26de70a6d743190c89ca2af:10:72612222&callback=showTimesData">
+    //        // url: "http://api.nytimes.com/svc/news/v3/content/nyt/business.jsonp?callback=nyt_biz_news_cb&api-key=put_your_api_key_here",
+    //         url: "http://api.nytimes.com/svc/mostpopular/v2/mostshared/all-sections/1?api-key=8ed242ade26de70a6d743190c89ca2af:10:72612222",
+    //         dataType: "jsonp",
+    //         jsonpCallback: "nyt_biz_news_db",
+    //         cache: true
+    //     })
+    //     .done(function(data) {
+    //       alert("Here");
+    //         var results = data['results'];
+    //         var html_str = "";
+    //         for (var i in results) {
+    //             var result = results[i];
+    //             html_str += "<p><a href='" + result['url'] + "'>" + result['title'] + "</a><br/>" + result['byline'] + "</p>";
+    //         }
+    //         $("#news").html(html_str);
+    //     });    
+    // });
+   </script>
+ </body>
+</html>
